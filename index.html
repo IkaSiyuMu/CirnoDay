@@ -6,6 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>对⑨当歌布局</title>
     <style>
+        @font-face {
+            font-family: 'SansLi';
+            src: url('fonts/SourceHanSansCN-Light.otf') format('opentype');
+        }
+
+        @font-face {
+            font-family: 'SerifBo';
+            src: url('fonts/SourceHanSerifSC-Bold.otf') format('opentype');
+        }
+
+        .SansMe {
+            font-family: 'SansLi', sans-serif;
+        }
+
+        .SerifBo {
+            font-family: 'SerifBo', serif;
+        }
+
+        .shadow-stroke {
+            margin: 0;
+            text-shadow:
+                -0.2px 2px 0 rgb(183, 226, 255),
+                2px 1px 0 rgb(128, 191, 233);
+        }
+
         body {
             margin: 0;
             font-family: Arial, sans-serif;
@@ -36,7 +61,8 @@
             padding: 3% 8%;
             box-sizing: border-box;
             clip-path: polygon(0 0, 100% 0, 80% 100%, 0 100%);
-            z-index: 1;
+            transition: opacity 1s ease;
+            z-index: -1;
         }
 
         .left-section::before {
@@ -46,6 +72,7 @@
             /* 默认居中 */
             background-size: 100%;
             z-index: -1;
+            transition: opacity 1s ease;
             /* 确保图片位于文字或其他内容的下层 */
         }
 
@@ -65,30 +92,36 @@
 
 
         .Text-box-area {
+            width: 700px;
+            height: 100%;
+            top: 25px;
             position: absolute;
             left: 40px;
         }
 
         .logo {
-            margin-bottom: 1rem;
+            margin: 0;
+            letter-spacing: 0.8px;
         }
 
         .logo img {
-            width: 80%;
+            width: 55%;
         }
 
         .text-block {
-            max-width: 400px;
+            max-width: 500px;
             /* 限制最大宽度 */
         }
 
         .text-block p {
-            margin: 0.5rem 0;
+            margin: 2rem 0;
             color: #333;
             font-size: 12px;
             /* 设置字体大小 */
-            line-height: 2.5;
+            line-height: 2.0;
             /* 设置行间距 */
+            letter-spacing: 0.1px;
+            /* 字母间距 */
             color: #333;
             /* 设置文字颜色 */
             margin-bottom: 10px;
@@ -98,35 +131,29 @@
         .button-group {
             display: flex;
             flex-direction: column;
-            gap: 0.8rem;
-            margin: 2rem 0;
+            gap: 0.7rem;
         }
 
         .button-group button {
             width: 222px;
             height: 65px;
-            padding: 1rem;
+            padding: 0rem;
             border: none;
-            border-radius: 10px;
+            border-radius: 0px;
             font-size: 1rem;
             color: #333;
             text-align: left;
-            padding-left: 1.5rem;
+            padding-left: 0rem;
             cursor: pointer;
             display: flex;
             align-items: center;
-        }
-
-        .button-group button img {
-            width: 30px;
-            height: 30px;
-            margin-right: 1rem;
         }
 
         .button-group p {
             text-align: center;
             font-size: 0.9rem;
             color: #666;
+            margin: 0;
         }
 
         /* 2022按钮样式 */
@@ -150,17 +177,70 @@
             background-position: center;
         }
 
+        .bottom-buttons button {
+            border: none;
+            height: 56px;
+            width: 130px;
+            background-size: cover;
+            margin-top: 4rem;
+        }
+
+        .about-club {
+            background-image: url("Images/icon/button5.png");
+            background-size: cover;
+            background-position: center;
+            margin-right: 15px;
+        }
+
+        .about-activity {
+            background-image: url("Images/icon/button4.png");
+            background-size: cover;
+            background-position: center;
+            margin-right: 15px;
+        }
+
         .right-section {
             height: 100%;
             width: 100%;
             content: '';
             opacity: 1;
             background-size: cover;
-            background-position: calc(50%+2000px) center;
             /* 默认居中 */
             z-index: -1;
             overflow: visible;
         }
+
+        .right-section-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background-size: cover;
+            background-position: center;
+            transition: opacity 1s ease;
+            z-index: -1;
+        }
+
+        .fadeout {
+            opacity: 0;
+        }
+
+        #background-layer {
+            z-index: 1;
+        }
+
+        #fade-layer {
+            z-index: 2;
+            opacity: 0;
+        }
+
+        #left-fade-layer {
+            clip-path: polygon(0 0, 100% 0, 80% 100%, 0 100%);
+            z-index: -1;
+            opacity: 0;
+        }
+
 
         .author-info {
             position: absolute;
@@ -192,41 +272,55 @@
         <!-- 左侧区域 -->
         <div class="left-section-wrapper">
             <div class="left-section">
-                <div class="Text-box-area">
-                    <div class="logo">
-                        <img src="Images/LOGO.png" alt="对⑨当歌 Logo">
-                    </div>
-                    <div class="text-block">
-                        <p> “对⑨当歌”琪露诺日接力是笔者个人发起，社团“冰精的冰屋”（冰屋社）辅助进行的创作接力活动，从2022年开始，至今已经进行两届。接力不限制形式，不设置门槛，初心者也可参加。</p>
-                        <p>点击下方可阅览历年画作集合。</p>
-                    </div>
-                    <div class="button-group">
-                        <button class="button-2022">
 
-                        </button>
-                        <p style="margin-top: -10px; margin-left: -450px;">对⑨当歌2022</p>
-                        <button class="button-2023">
+            </div>
+            <div class="left-section" id="left-fade-layer">
 
-                        </button>
-                        <p style="margin-top: -10px; margin-left: -450px;">对⑨当歌2023</p>
-                        <button class="button-2024">
+            </div>
+            <div class="Text-box-area">
+                <div class="logo">
+                    <img src="Images/LOGO.png" alt="对⑨当歌 Logo">
+                    <p class="SerifBo shadow-stroke" style="font-size: 20px;">9月9日琪露诺角色日接力纪念网站</p>
+                </div>
+                <div class="text-block">
+                    <p class="SansLi" style="font-size: 12px;">
+                        “对⑨当歌”琪露诺日接力是雾之湖的小球个人发起，社团“冰精的冰屋”（冰屋社）辅助进行的创作接力活动，从2022年开始，至今已经进行三届。接力不限制形式，不设置门槛，初心者也可参加。</p>
+                    <p class="SansLi" style="font-weight: bold; font-size: 14px;">▼点击下方可阅览历年画作集合▼。</p>
+                </div>
+                <div class="button-group">
+                    <button class="button-2022">
 
-                        </button>
-                        <p style="margin-top: -10px; margin-left: -450px;">对⑨当歌2024</p>
-                        <p>点击按钮获取更多信息</p>
-                    </div>
-                    <div class="bottom-buttons">
-                        <button>关于社团</button>
-                        <button>关于活动</button>
-                    </div>
+                    </button>
+                    <p style="margin-top: -10px; margin-left: -470px;">对⑨当歌2022</p>
+                    <button class="button-2023">
+
+                    </button>
+                    <p style="margin-top: -10px; margin-left: -470px;">对⑨当歌2023</p>
+                    <button class="button-2024">
+
+                    </button>
+                    <p style="margin-top: -10px; margin-left: -470px;">对⑨当歌2024</p>
+                </div>
+                <div class="bottom-buttons">
+                    <button class="about-club"></button><!-- 关于社团 -->
+                    <button class="about-activity"></button><!--关于活动 -->
                 </div>
             </div>
         </div>
         <!-- 右侧区域 -->
         <div class="right-section">
-            <div class="author-info">
-                <img src="Images/icon/1.png" alt="作者头像">
-                <span>作者名</span>
+            <!-- 渐变层 -->
+            <div class="right-section-image" id="background-layer">
+                <div class="author-info">
+                    <img src="Images/icon/1.png" alt="作者头像">
+                    <span>作者名</span>
+                </div>
+            </div>
+            <div class="right-section-image fadeout" id="fade-layer">
+                <div class="author-info">
+                    <img src="Images/icon/1.png" alt="作者头像">
+                    <span>作者名</span>
+                </div>
             </div>
         </div>
     </div>
@@ -240,42 +334,75 @@
             // 可以继续添加更多图片路径
         ];
 
-        // 获取 `body` 和 `.left-section::before` 元素
-        const rightSection = document.querySelector('.right-section');
-        const leftSectionBefore = document.querySelector('.left-section');
-
-        // 当前图片索引
         let currentIndex = 0;
+        const backgroundLayer = document.getElementById('background-layer');
+        const fadeLayer = document.getElementById('fade-layer');
+        const leftSectionBefore = document.querySelector('.left-section');
+        const leftSectionFade = document.getElementById('left-fade-layer');
+
+        // 初始化第一张图片
+        function setInitialBackground() {
+            const img = new Image();
+            img.src = images[currentIndex];
+            img.onload = () => {
+                const isPortrait = img.height > img.width;
+                const position = isPortrait ? 'top -400px center' : 'calc(50% + 200px) center';
+                backgroundLayer.style.backgroundImage = `url(${images[currentIndex]})`;
+                backgroundLayer.style.backgroundPosition = position;
+                leftSectionBefore.style.setProperty('background-image', `linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),url(${images[currentIndex]})`);
+                leftSectionBefore.style.setProperty('background-position', position);
+            };
+        }
+
+        setInitialBackground();
 
         // 切换图片函数
-        function changeBackground() {
-            const imageUrl = images[currentIndex];
-
-            // 创建 Image 对象以加载图片并检测宽高比
+        function changeImage() {
+            const nextIndex = (currentIndex + 1) % images.length;
+            const imageUrl = images[nextIndex];
             const img = new Image();
             img.src = imageUrl;
+
             img.onload = () => {
                 // 检测图片的宽高比
                 const isPortrait = img.height > img.width;
-
-                // 根据宽高比调整 background-position
                 const position = isPortrait ? 'top -400px center' : 'calc(50% + 200px) center';
 
-                // 设置 .rightSection 和 .left-section::before 的背景图片和位置
-                rightSection.style.setProperty('background-image', `url(${imageUrl})`);
-                rightSection.style.setProperty('background-position', position);
+                // 更新渐变层的背景图片和位置
+                fadeLayer.style.backgroundImage = `url(${imageUrl})`;
+                fadeLayer.style.backgroundPosition = position;
 
-                leftSectionBefore.style.setProperty('background-image', `linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),url(${imageUrl})`);
-                leftSectionBefore.style.setProperty('background-position', position);
+                leftSectionFade.style.backgroundImage = `url(${imageUrl})`;
+                leftSectionFade.style.backgroundPosition = position;
 
-                currentIndex = (currentIndex + 1) % images.length;
+                // 淡入渐变层
+                fadeLayer.style.opacity = '1';
+                leftSectionFade.style.setProperty('background-image', `linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),url(${imageUrl})`);
+                leftSectionFade.style.opacity = '1';
+
+                // 监听淡入动画结束事件
+                fadeLayer.addEventListener('transitionend', function onTransitionEnd() {
+                    // 切换底部背景图片和位置
+                    backgroundLayer.style.backgroundImage = `url(${imageUrl})`;
+                    backgroundLayer.style.backgroundPosition = position;
+
+                    leftSectionBefore.style.setProperty('background-image', `linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),url(${imageUrl})`);
+                    leftSectionBefore.style.setProperty('background-position', position);
+
+                    currentIndex = nextIndex;
+
+                    // 淡出渐变层
+                    fadeLayer.style.opacity = '0';
+                    leftSectionFade.style.opacity = '0';
+
+                    // 移除事件监听器，防止重复调用
+                    fadeLayer.removeEventListener('transitionend', onTransitionEnd);
+                });
             };
         }
-        // 初始加载
-        changeBackground();
 
-        // 每隔 5 秒切换一次图片
-        setInterval(changeBackground, 5000);
+        // 每3秒切换一次图片
+        setInterval(changeImage, 3000);
     </script>
 </body>
 
